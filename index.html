@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace Home</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #D4AF37;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            width: 100%;
+            background-color: #1f1f1f;
+            color: #D4AF37;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+        .navbar a {
+            color: #D4AF37;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .navbar a:hover {
+            color: #e3b32b;
+        }
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .listing-item {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .listing-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.8);
+        }
+        .listing-item h3 {
+            color: #D4AF37;
+            margin-bottom: 10px;
+        }
+        .listing-item p {
+            color: #aaaaaa;
+        }
+        .login-container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            margin-top: 10%;
+            text-align: center;
+            color: #D4AF37;
+            width: 90%;
+            max-width: 400px;
+        }
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        input[type="submit"] {
+            background-color: #D4AF37;
+            color: #1e1e1e;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        input[type="submit"]:hover {
+            background-color: #b28e2c;
+            color: #ffffff;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 400px;
+            color: #D4AF37;
+            text-align: center;
+        }
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #ff0000;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Toolbar for Navigation -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/">Home</a>
+            <a href="/listings">Listings</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="#" class="create-account-link">Create Account</a>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+
+    <!-- Listings Section -->
+    <h1>Available Listings</h1>
+    <div class="listings-grid">
+        <!-- Example listing items; replace with dynamic content -->
+        <div class="listing-item">
+            <h3>Mountain Bike</h3>
+            <p>Price: $500</p>
+            <p>A solid mountain bike for all terrains.</p>
+        </div>
+        <div class="listing-item">
+            <h3>Camping Tent</h3>
+            <p>Price: $150</p>
+            <p>4-person camping tent for weekend getaways.</p>
+        </div>
+        <div class="listing-item">
+            <h3>Kayak</h3>
+            <p>Price: $300</p>
+            <p>Single-person kayak, great for lakes and rivers.</p>
+        </div>
+    </div>
+
+    <!-- Modal for Create Account -->
+    <div id="createAccountModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2>Create an Account</h2>
+            <form method="POST" action="/create_account">
+                <input type="text" name="email" placeholder="Email" required><br>
+                <input type="password" name="password" placeholder="Password" required><br>
+                <input type="submit" value="Create Account">
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for the modal -->
+    <script>
+        // JavaScript to open and close the modal
+        function openModal() {
+            document.getElementById("createAccountModal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("createAccountModal").style.display = "none";
+        }
+
+        // Attach openModal to all create account links/buttons
+        const createAccountLinks = document.querySelectorAll(".create-account-link");
+        createAccountLinks.forEach(link => {
+            link.addEventListener("click", function(event) {
+                event.preventDefault();  // Prevent the default link action
+                openModal();
+            });
+        });
+
+        // Ensure modal closes when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("createAccountModal");
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

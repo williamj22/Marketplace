@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Listings</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Matching Navbar Styles */
+        .navbar {
+            width: 100%;
+            background-color: #1f1f1f;
+            color: #D4AF37;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: #D4AF37;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #e3b32b;
+        }
+
+        body {
+            background-color: #121212;
+            color: #D4AF37;
+        }
+
+        h1 {
+            color: #D4AF37;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .listings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .listing-item {
+            background-color: #1e1e1e;
+            color: #D4AF37;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .listing-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .listing-item p {
+            color: #aaaaaa;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/">Home</a>
+            <a href="/listings">Listings</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="/create_account">Create Account</a>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+
+    <!-- Listings Section -->
+    <main>
+        <h1>Available Listings</h1>
+        <div class="listings-grid">
+            {% if listings %}
+                {% for listing in listings %}
+                    <div class="listing-item">
+                        <h3>{{ listing.title }}</h3>
+                        <p><strong>Price:</strong> ${{ listing.price }}</p>
+                        <p>{{ listing.description }}</p>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p style="text-align: center; color: #aaaaaa;">No listings available at the moment.</p>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>
+

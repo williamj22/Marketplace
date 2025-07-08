@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        body {
+            background-color: #121212;
+            color: #D4AF37;
+        }
+
+        .about-container {
+            max-width: 800px;
+            margin: 50px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+        }
+
+        .about-container h1 {
+            color: #D4AF37;
+            margin-bottom: 20px;
+        }
+
+        .about-container p {
+            color: #aaaaaa;
+            margin: 10px 0;
+            line-height: 1.8;
+        }
+
+        .about-container a {
+            color: #D4AF37;
+            text-decoration: underline;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #1f1f1f;
+            color: #D4AF37;
+            padding: 15px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        .navbar a {
+            color: #D4AF37;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #e3b32b;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="/">Home</a>
+            <a href="/listings">Listings</a>
+            <a href="/about">About</a>
+            <a href="/contact">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <a href="/create_account">Create Account</a>
+            <a href="/login">Login</a>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="about-container">
+        <h1>About Our Marketplace</h1>
+        <p>
+            Welcome to our marketplace! This platform is designed to connect the community by making it easy to buy, sell, and rent items.
+        </p>
+        <p>
+            Whether you're looking for outdoor gear, affordable items, or want to make extra cash with unused items, our platform provides a secure and simple way to do so.
+        </p>
+        <p>
+            We are committed to fostering a safe and reliable marketplace. If you have any questions or need assistance, please visit our <a href="/contact">Contact Page</a>.
+        </p>
+    </div>
+</body>
+</html>
+
