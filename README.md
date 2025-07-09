@@ -1,5 +1,5 @@
 
-A full-stack web application built with Flask that simulates an online marketplace. Users can create accounts (restricted to @colorado.edu emails), log in securely, and add listings with title, price, and description. The app includes user authentication with password hashing and SQLite database integration.
+A full-stack web application built with Flask that simulates an online marketplace. Users can create accounts (restricted to @colorado.edu emails), log in securely, and add listings with title, price, and description. The app includes user authentication with password hashing and SQLite database integration. (Check MarketplaceWeb for screenshot of UI)
 
 ## Features
 
